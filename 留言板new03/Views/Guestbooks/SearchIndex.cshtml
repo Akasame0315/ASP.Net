@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MvcGuestbook.Models.Guestbook>
+
+@{
+    ViewBag.Title = "查詢";
+}
+
+<h2>查詢</h2>
+
+<p>
+    <!--@Html.ActionLink("Create New", "Create")-->
+    @using (Html.BeginForm("SearchIndex", "Guestbooks", FormMethod.Get))
+    {
+    <p>
+        keyword: @Html.TextBox("SearchString")
+        <input type="submit" value="查詢" />
+        <h5>@Html.ActionLink("All comments", "Index")</h5>
+    </p>
+}
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comment)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comment)
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+
