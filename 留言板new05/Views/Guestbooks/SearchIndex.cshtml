@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "搜尋留言";
+}
+
+@model IEnumerable<NewGuestbook.Models.Guestbook>
+
+@{
+    ViewBag.Title = "查詢留言";
+}
+
+<h2>查詢留言</h2>
+
+<p>
+    @using (Html.BeginForm("SearchIndex", "Guestbooks", FormMethod.Get))
+    {
+<p>
+    關鍵字: @Html.TextBox("SearchString")
+    <input type="submit" value="查詢" , class="btn btn-success" />
+</p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.EditTime)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            @if (String.IsNullOrEmpty(item.Label))
+                {
+            <td>-></td>
+                }
+                else
+                {
+            <td>@Html.DisplayFor(modelItem => item.Label)</td>
+                }
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.EditTime)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+            </td>
+            <!--@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })-->
+        </tr>
+        }
+
+    </table>
+    <p>
+        @Html.ActionLink("所有留言", "SearchIndex", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("回留言板", "Index", null, new { @class = "btn btn-default" })
+    </p>

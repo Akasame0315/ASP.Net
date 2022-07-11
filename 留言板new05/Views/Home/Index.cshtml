@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "Main";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">首頁</a>
+        </li>
+        <li>
+            <a href="#">儀表板</a>
+        </li>
+    </ul>
+
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a class="well top-block" data-toggle="modal" data-target="#AddAC">
+                <i class="glyphicon glyphicon-list-alt blue"></i>
+
+                <div>公告</div>
+                @*<span class="notification">6</span>*@
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a class="well top-block" data-toggle="modal" data-target="#ViewAC">
+                <i class="glyphicon glyphicon-list blue"></i>
+
+                <div>戰報</div>
+                @*<span class="notification blue">4</span>*@
+            </a>
+        </div>
+        <div class="col-md-12">
+            <div class="jumbotron jumbotron-fluid" style="padding:5px;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:30%;text-align:center;">時間</th>
+                            <th style="width:70%;text-align:center;">公告內容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*<tr>
+                                <th style="width:30%;text-align:center;">2020/07/13</th>
+                                <th style="width:70%;text-align:center;">明天中午有漢光演習，全體同仁請注意中午用餐時間哦~</th>
+                            </tr>
+                            <tr>
+                                <th style="width:30%;text-align:center;">2020/07/14</th>
+                                <th style="width:70%;text-align:center;">今天中午要開會，請各位同仁不要忘記</th>
+                            </tr>*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+Session有效時間:@Session.Timeout
+
+<!--Add modal-->
+<div class="modal fade" id="AddAC" tabindex="-1" role="dialog" aria-labelledby="AddACTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddACTitle">
+                    檢視公告
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h5>
+            </div>
+            <div class="modal-body" id="AddAC_body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            <h4 class="panel-title">
+                                <label>公告標題</label>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                109學年指考將於明（3日）起登場，各考場於今日開放考生查看試場，北區有43名身障生集中於台大博雅教學館進行考試。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            <h4 class="panel-title">
+                                <label>公告標題 2</label>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                現在很多人都喜歡邊工作、邊看 YouTube 或 Netflix 影片，不過經常遇到只要打開其他程式後，會造成 Chrome 瀏覽分頁視窗容易被擋住，導致要移來移去，更導致會錯過精彩畫面，如果你有這困擾，可以透過這篇方法來實現 Netflix / YouTube  子母畫面或置頂方法，如此一來就不怕畫面會被擋住。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add modal-->
+<div class="modal fade" id="ViewAC" tabindex="-1" role="dialog" aria-labelledby="AddACTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddACTitle">
+                    檢視戰報
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h5>
+            </div>
+            <div class="modal-body" id="AddAC_body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                            <h4 class="panel-title">
+                                <label>戰報</label>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                狂賀！五月狂賀成交～
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                            <h4 class="panel-title">
+                                <label>戰報 2</label>
+                            </h4>
+                        </div>
+                        <div id="collapse4" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                狂賀！五月狂賀成交～
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

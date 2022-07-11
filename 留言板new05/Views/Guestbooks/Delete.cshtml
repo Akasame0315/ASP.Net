@@ -1,0 +1,64 @@
+﻿@model NewGuestbook.Models.Guestbook
+
+@{
+    ViewBag.Title = "刪除留言";
+}
+
+<h2>刪除留言</h2>
+
+<h3>你確定要刪除這則留言嗎?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Label)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Label)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="刪除" class="btn btn-danger" />
+    @Html.ActionLink("回留言板", "Index", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("回留言管理", "EditIndex", null, new { @class = "btn btn-default" })
+</div>
+    }
+</div>
