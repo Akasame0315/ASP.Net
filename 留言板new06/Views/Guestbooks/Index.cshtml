@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NewGuestbook.Models.Guestbook>
+
+@{
+    ViewBag.Title = "留言板";
+}
+
+<h2 style="font-family:DFKai-sb;">留言板</h2>
+
+<p>
+    @Html.ActionLink("我也要留言OwO", "Write", null, new { @class = "btn btn-primary" })
+        
+    @Html.ActionLink("我想查詢O_O", "SearchIndex", null, new { @class = "btn btn-primary" })
+</p>
+
+    <table class="table">
+        <tr style="background-color:blanchedalmond">
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.EditTime)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="bg-warning">
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Label)</td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td style="width: 350px;" >
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.EditTime, "_DateTime")   <!--只顯示日期-->
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+
+    </table>
+

@@ -1,0 +1,84 @@
+﻿@model NewGuestbook.Models.Guestbook
+
+@{
+    ViewBag.Title = "編輯留言";
+}
+
+<h2 style="font-family:DFKai-sb;">好編一直編</h2>
+
+<style>
+    .select {
+        width: 70px;
+        height: 34px;
+        color: black;
+        background-color: white;
+        border-radius: 5px;
+        border-color: darkgray;
+        font-size: 15px;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal bg-warning">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Label, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="label" class="select">
+                    <option style="background-color:white;color:black" selected> -></option>
+                    <option style="background-color:lightgray">推</option>
+                    <option style="background-color: blue">噓</option>
+                    <option style="background-color: red">喜歡</option>
+                    <option style="background-color: darkorange">分享</option>
+                    <option style="background-color: black">討厭</option>
+                    <option style="background-color: slategrey">難過</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="編輯完成" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("回留言板", "Index", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("回留言管理", "EditIndex", null, new { @class = "btn btn-default" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
