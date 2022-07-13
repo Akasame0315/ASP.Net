@@ -1,0 +1,67 @@
+﻿@model IEnumerable<DataBasePrac.Models.Member01>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<p>
+    @using (Html.BeginForm("Search", "Member01", FormMethod.Get))
+    {
+    <p>
+        關鍵字: @Html.TextBox("searchString")
+        <input type="submit" value="查詢" , class="btn btn-success" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditTime)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserPwd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EditTime)
+                </td>
+                <td></td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <th colspan="16" style="text-align:center">查無資料</th>
+        </tr>
+    }
+
+
+</table>
+
+    <p>
+        @Html.ActionLink("所有資料", "Search", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("回清單", "Index", null, new { @class = "btn btn-default" })
+    </p>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<DataBasePrac.Models.Member01>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("建立新資料", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPwd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EditTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Details", new { id = item.UserID }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-danger" })
+                <button class="btn btn-success" data-toggle="modal" data-target="#EditBD" value="@item.UserID" onclick="EditBD(this.value);">
+                    基本資料
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<!--編輯基本資料樣板 modal-->
+<div class="modal fade" id="EditBD" tabindex="-1" role="dialog" aria-labelledby="EditBDhead" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:80%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditBDhead">
+                    <span id="EditBDTitle">基本資料</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h5>
+            </div>
+            <div class="modal-body" id="EditBD_body"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function EditBD(UserID) {
+        $.ajax({
+            type: "GET",
+            data: { UserID = UserID, FormView: "Index" },
+            url: "@Url.Action("View", "ParticalView")",
+            beforeSend: function () {
+                $("#EditBD_body").html("");
+                },
+            success: function (result) {
+                $("#EditBD_body").html(result);
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
+</script>
