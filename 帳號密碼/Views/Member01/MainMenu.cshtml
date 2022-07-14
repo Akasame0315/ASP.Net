@@ -1,0 +1,12 @@
+﻿@using DataBasePrac.Models;
+@{
+    ViewBag.Title = "MainMenu";
+}
+
+<li class="accordion">
+    <ul class="nav nav-pills nav-stacked child">
+        <li>@Html.ActionLink("清單", "Index", "Member01")</li>
+        <li>@Html.ActionLink("註冊", "Create", "Member01")</li>
+        <li>@Html.ActionLink("查詢", "Search", "Member01")</li>
+    </ul>
+</li>

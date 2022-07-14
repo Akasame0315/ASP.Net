@@ -1,0 +1,111 @@
+﻿@model IEnumerable<DataBasePrac.Models.Member01>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>搜尋資料</h2>
+
+<p>
+    @using (Html.BeginForm("Search", "Member01", FormMethod.Get))
+    {
+    <p>
+        關鍵字: @Html.TextBox("searchString")
+        <input type="submit" value="查詢" , class="btn btn-success" />
+    </p>
+}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserPwd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EditTime)
+            </th>
+            <th></th>
+        </tr>
+        @if (Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserPwd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EditTime)
+                    </td>
+                    <td>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#EditBD" value="@item.UserID" onclick="EditBD(this.value);">
+                            基本資料
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+    <tr>
+        <th colspan="16" style="text-align:center">查無資料</th>
+
+    </tr>
+        }
+
+
+    </table>
+
+    <p>
+        @Html.ActionLink("所有資料", "Search", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("回清單", "Index", null, new { @class = "btn btn-default" })
+    </p>
+
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <!--編輯基本資料樣板 modal-->
+    <div class="modal fade" id="EditBD" tabindex="-1" role="dialog" aria-labelledby="EditBDhead" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="width:80%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditBDhead">
+                        <span id="EditBDTitle">帳號資料</span>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </h5>
+                </div>
+                <div class="modal-body" id="EditBD_body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function EditBD(UserID) {
+        $.ajax({
+            type: "GET",
+            data: { id: UserID, FormView: "Index" },
+            url: "@Url.Action("ParticalDetail", "Member01")",
+            beforeSend: function () {
+                $("#EditBD_body").html("");
+                $("#EditBD_body").html("<div><img src=' ../Content/loading.gif' style='max-width:100%;max-length:100%;posotion:center;'>&nbsp;&nbsp;資料讀取中</div>");
+                },
+            success: function (result) {
+                $("#EditBD_body").html(result);
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
+    </script>
