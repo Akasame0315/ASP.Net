@@ -1,9 +1,9 @@
-要注意檢查碼在加密前的資料有沒有跟送出的一樣
-postman的參數都要注意有沒有空格
-postman送出資料要用form-data型態
-postman 錯誤: 訂單編號重覆，建立失敗，請返回商店頁面重新下單。 就把編號改掉就好(但要注意檢查碼也要改)
-Header要記得加
-choosePayment可以先用Credit就好
+要注意檢查碼在加密前的資料有沒有跟送出的一樣(check CheckMacValue val is equal all data or not)
+postman的參數都要注意有沒有空格(notice all data has space or not)
+postman送出資料要用form-data型態(postman send data by form-data)
+postman 錯誤: 訂單編號重覆，建立失敗，請返回商店頁面重新下單。 就把編號改掉就好(但要注意檢查碼也要改) (MerchantTradeNo only use once, if website say it's repeat just weite a new one. But CheckMacValue need to change too)
+Header要記得加(Header add Content Type ：application/x-www-form-urlencoded)
+choosePayment可以先用Credit就好(choosePayment can use Credit)
 
 JSON格式
 {
