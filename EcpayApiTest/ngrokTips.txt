@@ -1,0 +1,2 @@
+ngrok http --host-header=localhost [PORT]
+ngrok http https://localhost:[PORT] --host-header=localhost:[PORT]
